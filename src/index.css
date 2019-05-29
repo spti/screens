@@ -1,0 +1,25 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+#output {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+#output span {
+  display: block;
+  margin: auto;
+
+  font-size: 2em;
+  font-weight: 900;
+  color: rgba(0,0,0,0.6);
+}
