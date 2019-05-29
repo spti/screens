@@ -11,8 +11,6 @@ body {
 
 #output {
   display: flex;
-  align-items: center;
-  justify-content: center;
 
   width: 100vw;
   height: 100vh;
@@ -20,25 +18,13 @@ body {
   overflow: hidden;
 }
 
-#output .text-container {
-  display: block;
-  flex-shrink: 0;
-  width: 150vw;
-  height: 150vh;
-  line-height: 150vh;
-  text-align: center;
-}
-
-#output .text-centerer {
-  line-height: normal;
-  display: inline-block;
-  vertical-align: middle;
-}
-
 #output span {
+  display: block;
+  margin: auto;
 
   font-size: 2em;
   font-weight: 900;
+  text-align: center;
 
   color: rgba(0,0,0,0.6);
 }
