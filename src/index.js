@@ -31,25 +31,18 @@ function makeToolkit() {
       const logger = Log()
       logger.next()
 
-      return function(val) {
+      function last(val) {log.last = () => {return val}}
+
+      function log(val) {
         const logged = logger.next(val)
         if (logged.done && logged.value === 'undefined') {return null}
+        last(logged.value)
         return logged.value
       }
+
+      return log
     },
-
-    repeatText(text, times) {
-      var str = ''
-      while (times >= 0) {
-        str += text + ' '
-        times--
-      }
-
-      return str
-
-    }
   }
-
 
 }
 
@@ -63,13 +56,25 @@ window.addEventListener('load', () => {
   outputEl.innerText = log(tk.getWidth(html)).toString() + ' px'
 
   var timeoutId = null
+
+  window.addEventListener('orientationchange', () => {
+    const width = tk.getWidth(html)
+    if (log.last() == width) return
+
+    outputEl.innerText = log(width) + ' px'
+  })
+
   window.addEventListener('resize', () => {
     window.clearTimeout(timeoutId)
+    const width = tk.getWidth(html)
+
+    if (log.last() == width) return
+
     timeoutId = window.setTimeout(() => {
-      log(tk.getWidth(html))
+      log(width)
     }, 500)
 
-    outputEl.innerText = tk.getWidth(html) + ' px'
+    outputEl.innerText = width + ' px'
   })
 
   document.querySelector('#output').addEventListener('click', () => {
